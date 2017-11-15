@@ -321,7 +321,7 @@ func (p *BaseParser) GetTokenFactory() TokenFactory {
 }
 
 // Tell our token source and error strategy about a Newway to create tokens.//
-func (p *BaseParser) setTokenFactory(factory TokenFactory) {
+func (p *BaseParser) SetTokenFactory(factory TokenFactory) {
 	p.input.GetTokenSource().setTokenFactory(factory)
 }
 

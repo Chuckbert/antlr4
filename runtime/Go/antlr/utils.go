@@ -8,6 +8,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+	"math/bits"
 	"sort"
 	"strconv"
 	"strings"
@@ -367,11 +368,13 @@ func murmurInit(seed int) int {
 func murmurUpdate(h1 int, k1 int) int {
 	var k1u uint
 	k1u = uint(k1) * c1_32
-	k1u = (k1u << 15) | (k1u >> 17) // rotl32(k1u, 15)
+	k1u = bits.RotateLeft(k1u, 15)
+	//k1u = (k1u << 15) | (k1u >> 17) // rotl32(k1u, 15)
 	k1u *= c2_32
 
 	var h1u = uint(h1) ^ k1u
-	h1u = (h1u << 13) | (h1u >> 19) // rotl32(h1u, 13)
+	h1u = bits.RotateLeft(h1u, 13)
+	//h1u = (h1u << 13) | (h1u >> 19) // rotl32(h1u, 13)
 	h1u = h1u*5 + 0xe6546b64
 	return int(h1u)
 }
