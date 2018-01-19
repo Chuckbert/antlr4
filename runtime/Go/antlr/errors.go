@@ -171,6 +171,13 @@ func NewNoViableAltException(recognizer Parser, input TokenStream, startToken To
 	return n
 }
 
+func (e *NoViableAltException) GetDeadEndConfigs() ATNConfigSet {
+	return e.deadEndConfigs
+}
+func (e *NoViableAltException) GetContext() ParserRuleContext {
+	return e.ctx
+}
+
 type InputMisMatchException struct {
 	*BaseRecognitionException
 }
